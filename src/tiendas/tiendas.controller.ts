@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { TiendasService } from './tiendas.service';
+import { TiendaService } from './tiendas.service';
 import { CreateTiendaDto } from './dto/create-tienda.dto';
 import { UpdateTiendaDto } from './dto/update-tienda.dto';
 
 @Controller('tiendas')
 export class TiendasController {
-  constructor(private readonly tiendasService: TiendasService) {}
+  constructor(private readonly tiendasService: TiendaService) {}
 
   @Post()
   create(@Body() createTiendaDto: CreateTiendaDto) {
