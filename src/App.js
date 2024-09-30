@@ -8,7 +8,8 @@ import CreateAccount from './pages/CreateAccount';
 import OwnerDetails from './pages/OwnerDetails';
 import EstablishmentDetails from './pages/EstablishmentDetails';
 import AccountDetails from './pages/AccountDetails';
-import SelectAccountType from './pages/SelectAccountType'; // Nueva vista
+import SelectAccountType from './pages/SelectAccountType'; 
+import BusinessList from './pages/BusinessList';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/owner-details" element={<OwnerDetails />} />
         <Route path="/establishment-details" element={<EstablishmentDetails />} />
         <Route path="/account-details" element={<AccountDetails />} />
+        <Route path="/business-list" element={<BusinessList />} /> {/* Nueva ruta */}
       </Routes>
     </Router>
   );

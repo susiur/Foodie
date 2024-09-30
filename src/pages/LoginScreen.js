@@ -13,6 +13,12 @@ const LoginScreen = () => {
     navigate('/select-account-type');
   };
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/business-list'); 
+  };
+
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-purple-400 text-black">
       <div className="w-full max-w-xs bg-white p-8 rounded-lg shadow-md">
@@ -27,7 +33,7 @@ const LoginScreen = () => {
           </button>
         </div>
 
-        <form className="flex flex-col">
+        <form className="flex flex-col" onSubmit={handleSubmit}> {/* Añade el evento onSubmit aquí */}
           {usePhone ? (
             <input
               type="text"
