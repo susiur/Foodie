@@ -14,9 +14,8 @@ const WelcomeScreen = () => {
   }, [navigate]);
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-purple-400 text-white text-center">
-      <h2 className="text-4xl font-bold font-spartan">Ordena fácil, ahorras tú.</h2>
-      <p className="mt-4 text-lg font-sanchez">Todas tus comidas favoritas en un solo lugar</p>
+    <div className="flex flex-col justify-center items-center h-screen bg-[#FF6F6F] text-white text-center">
+      <h2 className="text-7xl font-bold font-leaguespartan">Donde la comida y la sostenibilidad se encuentran</h2>
     </div>
   );
 };

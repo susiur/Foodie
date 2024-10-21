@@ -13,19 +13,19 @@ const SelectAccountType = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-purple-400">
-      <div className="w-full max-w-xs bg-white p-8 rounded-lg shadow-md">
-        <h2 className="text-3xl font-bold mb-6 text-center text-purple-600 font-spartan">Crear cuenta</h2>
+    <div className="flex flex-col justify-center items-center h-screen bg-[#FF6F6F]">
+      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+        <h2 className="text-5xl font-bold mb-12 text-center text-[#FF6F6F] font-leaguespartan">Crear cuenta</h2>
         <div className="flex flex-col">
           <button
             onClick={navigateToUserAccountCreation}
-            className="bg-purple-600 text-white py-3 px-4 rounded-lg mb-4 text-center font-spartan"
+            className="bg-[#FF6F6F] text-white py-3 px-4 rounded-lg mb-8 text-center font-leaguespartan text-xl"
           >
             Crear cuenta de Usuario
           </button>
           <button
             onClick={navigateToEstablishmentAccountCreation}
-            className="bg-purple-600 text-white py-3 px-4 rounded-lg text-center font-spartan"
+            className="bg-[#FF6F6F] text-white py-3 px-4 rounded-lg text-center font-leaguespartan text-xl"
           >
             Crear cuenta de Establecimiento
           </button>

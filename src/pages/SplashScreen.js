@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png';
 
 const SplashScreen = () => {
   const navigate = useNavigate();
@@ -16,8 +15,8 @@ const SplashScreen = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-white">
-      <img src={logo} alt="Foodie logo" className="w-40" />
-      <h1 className="text-3xl font-bold text-purple-600 mt-4 font-newsreader">FOODIE</h1>
+      <h1 className="text-8xl font-bold text-[#FF6F6F] mt-4 font-leaguespartan">ƎB</h1>
+      <h1 className="text-6xl font-bold text-[#FF6F6F] mt-4 font-leaguespartan">ECOBITE</h1>
     </div>
   );
 };

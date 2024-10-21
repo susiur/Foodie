@@ -10,22 +10,22 @@ const SelectRoleScreen = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-purple-400">
+    <div className="flex justify-center items-center h-screen bg-[#FF6F6F]">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-4xl font-bold mb-16 text-center font-spartan text-black">Bienvenido</h2>
-
-        <div className="flex flex-col space-y-8">
+        <h2 className="text-5xl font-bold text-center font-leaguespartan text-[#FF6F6F]">Bienvenido</h2>
+        <div className="flex flex-col">
+          <h3 className='text-2xl text-left font-leaguespartan text-black mt-16 mb-8'>Ingreso como usuario</h3>
           <button
             onClick={handleLogin}
-            className="text-2xl text-purple-600 font-bold font-spartan"
+            className="text-4xl text-white font-bold font-leaguespartan bg-[#FF6F6F] p-2 rounded-lg shadow-lg"
           >
             ¡Quiero comprar!
           </button>
 
-          {/* Botón para elegir vender */}
+          <h3 className='text-2xl text-left font-leaguespartan text-black mt-16 mb-8'>Ingreso como establecimiento</h3>
           <button
             onClick={handleLogin}
-            className="text-2xl text-purple-600 font-bold font-spartan"
+            className="text-4xl text-white font-bold font-leaguespartan bg-[#FF6F6F] p-2 rounded-lg shadow-lg"
           >
             ¡Quiero ofrecer mis productos!
           </button>

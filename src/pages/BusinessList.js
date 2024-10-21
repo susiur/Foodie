@@ -36,8 +36,8 @@ const BusinessList = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center bg-purple-400 min-h-screen p-6">
-      <h1 className="text-4xl font-bold text-white mb-6 font-spartan">FOODIE</h1>
+    <div className="flex flex-col items-center bg-[#FF6F6F] min-h-screen p-6">
+      <h1 className="text-5xl font-bold text-white mb-6 font-spartan">ECOBITE</h1>
       <div className="w-full max-w-lg">
         {businesses.map((business, index) => (
           <div
@@ -51,8 +51,8 @@ const BusinessList = () => {
               className="w-16 h-16 object-contain mr-4"
             />
             <div className="flex-1">
-              <h2 className="text-xl font-bold text-purple-600 font-sanchez">{business.name}</h2>
-              <p className="text-green-600 font-spartan">Contacto: {business.contact}</p>
+              <h2 className="text-xl font-bold text-[#FF6F6F] font-sanchez">{business.name}</h2>
+              <p className="text-[#FF6F6F] font-spartan">Contacto {business.contact}</p>
             </div>
             <div className="flex flex-col items-center">
               <span

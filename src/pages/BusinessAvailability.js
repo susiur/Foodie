@@ -10,7 +10,7 @@ const ProductAvailability = ({ business }) => {
           className="w-48 h-48 object-contain mb-4 mx-auto flex justify-center"
         />
         <form className="flex flex-col">
-          <label className="mb-2 text-purple-600 font-spartan text-lg">Nombre</label>
+          <label className="mb-2 text-[#FF6F6F] font-spartan text-lg">Nombre</label>
           <input
             type="text"
             value={business.name}
@@ -18,7 +18,7 @@ const ProductAvailability = ({ business }) => {
             className="mb-4 p-3 rounded-lg border border-gray-300 font-sanchez"
           />
 
-          <label className="mb-2 text-purple-600 font-spartan text-lg">Teléfono atención al cliente</label>
+          <label className="mb-2 text-[#FF6F6F] font-spartan text-lg">Teléfono atención al cliente</label>
           <input
             type="text"
             value={business.contact}
@@ -26,7 +26,7 @@ const ProductAvailability = ({ business }) => {
             className="mb-4 p-3 rounded-lg border border-gray-300 font-sanchez"
           />
 
-          <label className="mb-2 text-purple-600 font-spartan text-lg">Disponibilidad</label>
+          <label className="mb-2 text-[#FF6F6F] font-spartan text-lg">Disponibilidad</label>
           <div className="flex justify-between mb-4">
             <button
               className={`font-sanchez py-2 px-4 rounded-lg w-1/2 mr-2 ${
