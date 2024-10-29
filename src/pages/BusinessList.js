@@ -1,39 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductAvailability from './BusinessAvailability';
-import dunkin from '../assets/dunkinLogo.png'
-import migueria from '../assets/laMigueriaLogo.png'
-import portal from '../assets/elPortalLogo.png'
-import criminal from '../assets/criminalLogo.png'
 
 const BusinessList = () => {
   const [selectedBusiness, setSelectedBusiness] = useState(null);
+  const [businesses, setBusinesses] = useState([]);
 
-  const businesses = [
-    {
-      name: "Dunkin' Donuts",
-      contact: "313 870 2329",
-      available: true,
-      logo: dunkin,
-    },
-    {
-      name: "La Miguería",
-      contact: "313 870 2329",
-      available: false,
-      logo: migueria,
-    },
-    {
-      name: "El Portal",
-      contact: "313 870 2329",
-      available: true,
-      logo: portal,
-    },
-    {
-      name: "Criminal Taquería",
-      contact: "313 870 2329",
-      available: false,
-      logo: criminal,
-    }
-  ];
+  useEffect(() => {
+    // Función para obtener las tiendas desde el backend
+    const fetchBusinesses = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/tiendas'); // Cambia la URL si es necesario
+        const data = await response.json();
+        // Mapea los datos a la estructura que necesitas
+        const formattedBusinesses = data.map((business) => ({
+          name: business.establishmentNombre, // Cambia al nombre correcto del backend
+          telefono: business.telefono, // Asegúrate de que este campo exista en el backend
+          available: business.activa, // Cambia al campo correcto para disponibilidad
+          logo: business.logo, // Asegúrate de que el logo tenga la URL correcta
+          linkWssp: business.linkWssp, // Asegúrate de que el logo tenga la URL correcta
+        }));
+        setBusinesses(formattedBusinesses);
+      } catch (error) {
+        console.error('Error fetching businesses:', error);
+      }
+    };
+
+    fetchBusinesses();
+  }, []);
 
   return (
     <div className="flex flex-col items-center bg-[#FF6F6F] min-h-screen p-6">
@@ -43,7 +36,7 @@ const BusinessList = () => {
           <div
             key={index}
             className="bg-white p-4 rounded-lg shadow-md mb-4 flex items-center cursor-pointer"
-            onClick={() => setSelectedBusiness(business)} 
+            onClick={() => setSelectedBusiness(business)}
           >
             <img
               src={business.logo}
@@ -52,7 +45,7 @@ const BusinessList = () => {
             />
             <div className="flex-1">
               <h2 className="text-xl font-bold text-[#FF6F6F] font-sanchez">{business.name}</h2>
-              <p className="text-[#FF6F6F] font-spartan">Contacto {business.contact}</p>
+              <p className="text-[#FF6F6F] font-spartan">Contacto {business.telefono}</p>
             </div>
             <div className="flex flex-col items-center">
               <span

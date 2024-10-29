@@ -9,7 +9,7 @@ const SelectAccountType = () => {
   };
 
   const navigateToEstablishmentAccountCreation = () => {
-    navigate('/owner-details');
+    navigate('/register-store');
   };
 
   return (

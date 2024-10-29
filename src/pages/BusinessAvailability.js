@@ -1,4 +1,5 @@
 import React from 'react';
+import whatsappLogo from '../assets/whatsapp-logo.png';
 
 const ProductAvailability = ({ business }) => {
   return (
@@ -21,7 +22,7 @@ const ProductAvailability = ({ business }) => {
           <label className="mb-2 text-[#FF6F6F] font-spartan text-lg">Teléfono atención al cliente</label>
           <input
             type="text"
-            value={business.contact}
+            value={business.telefono}
             readOnly
             className="mb-4 p-3 rounded-lg border border-gray-300 font-sanchez"
           />
@@ -43,7 +44,21 @@ const ProductAvailability = ({ business }) => {
               No Disponible
             </button>
           </div>
+
+          {/* Aquí agregamos el logo de WhatsApp como un enlace */}
+        {business.linkWssp && (
+          <a href={business.linkWssp} target="_blank" rel="noopener noreferrer" className="flex items-center mt-4">
+            <img
+              src={whatsappLogo}
+              alt="WhatsApp"
+              className="w-10 h-10 object-contain"
+            />
+            <span className="ml-2 text-[#FF6F6F] font-sanchez">Contactar por WhatsApp</span>
+          </a>
+        )}
         </form>
+
+        
       </div>
     </div>
   );
