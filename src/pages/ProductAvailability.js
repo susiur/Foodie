@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import whatsappLogo from '../assets/whatsapp-logo.png';
 
-const ProductAvailability = ({ business }) => {
+const ProductAvailability = () => {
+  const { businessId } = useParams(); 
+  const [business, setBusiness] = useState(null);
+
+  useEffect(() => {
+    const fetchBusiness = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/tiendas/${businessId}`);
+        const data = await response.json();
+        setBusiness(data); 
+      } catch (error) {
+        console.error('Error fetching business details:', error);
+      }
+    };
+
+    fetchBusiness();
+  }, [businessId]);
+
+  if (!business) return <div>Cargando...</div>;
+
   return (
     <div className="flex flex-col justify-center items-center mt-8 bg-purple-400 text-black">
       <div className="w-full max-w-xs bg-white p-8 rounded-lg shadow-md">
@@ -45,20 +65,17 @@ const ProductAvailability = ({ business }) => {
             </button>
           </div>
 
-          {/* Aquí agregamos el logo de WhatsApp como un enlace */}
-        {business.linkWssp && (
-          <a href={business.linkWssp} target="_blank" rel="noopener noreferrer" className="flex items-center mt-4">
-            <img
-              src={whatsappLogo}
-              alt="WhatsApp"
-              className="w-10 h-10 object-contain"
-            />
-            <span className="ml-2 text-[#FF6F6F] font-sanchez">Contactar por WhatsApp</span>
-          </a>
-        )}
+          {business.linkWssp && (
+            <a href={business.linkWssp} target="_blank" rel="noopener noreferrer" className="flex items-center mt-4">
+              <img
+                src={whatsappLogo}
+                alt="WhatsApp"
+                className="w-10 h-10 object-contain"
+              />
+              <span className="ml-2 text-[#FF6F6F] font-sanchez">Contactar por WhatsApp</span>
+            </a>
+          )}
         </form>
-
-        
       </div>
     </div>
   );

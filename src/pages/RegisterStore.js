@@ -240,7 +240,7 @@ const RegisterStore = () => {
         <div className="flex flex-col items-center mt-6">
         <button
                 type="submit"
-                className={`py-3 px-9 rounded-lg text-center font-spartan text-xl transition-colors ${
+                className={`py-3 px-9 rounded-lg text-center font-spartan text-xl transition-colors mb-3 ${
                 loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#FF6F6F] text-white hover:bg-[#FF4F4F]'
                 }`}
             onClick={handleSubmit}

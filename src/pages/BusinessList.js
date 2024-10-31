@@ -1,23 +1,23 @@
+// BusinessList.js
 import React, { useState, useEffect } from 'react';
-import ProductAvailability from './BusinessAvailability';
+import { useNavigate } from 'react-router-dom';
 
 const BusinessList = () => {
-  const [selectedBusiness, setSelectedBusiness] = useState(null);
   const [businesses, setBusinesses] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Función para obtener las tiendas desde el backend
     const fetchBusinesses = async () => {
       try {
-        const response = await fetch('http://localhost:3001/tiendas'); // Cambia la URL si es necesario
+        const response = await fetch('http://localhost:3001/tiendas');
         const data = await response.json();
-        // Mapea los datos a la estructura que necesitas
         const formattedBusinesses = data.map((business) => ({
-          name: business.establishmentNombre, // Cambia al nombre correcto del backend
-          telefono: business.telefono, // Asegúrate de que este campo exista en el backend
-          available: business.activa, // Cambia al campo correcto para disponibilidad
-          logo: business.logo, // Asegúrate de que el logo tenga la URL correcta
-          linkWssp: business.linkWssp, // Asegúrate de que el logo tenga la URL correcta
+          id: business.id, // Asegúrate de tener un ID único para cada negocio
+          name: business.establishmentNombre,
+          telefono: business.telefono,
+          available: business.activa,
+          logo: business.logo,
+          linkWssp: business.linkWssp,
         }));
         setBusinesses(formattedBusinesses);
       } catch (error) {
@@ -32,11 +32,11 @@ const BusinessList = () => {
     <div className="flex flex-col items-center bg-[#FF6F6F] min-h-screen p-6">
       <h1 className="text-5xl font-bold text-white mb-6 font-spartan">ECOBITE</h1>
       <div className="w-full max-w-lg">
-        {businesses.map((business, index) => (
+        {businesses.map((business) => (
           <div
-            key={index}
+            key={business.id}
             className="bg-white p-4 rounded-lg shadow-md mb-4 flex items-center cursor-pointer"
-            onClick={() => setSelectedBusiness(business)}
+            onClick={() => navigate(`/availability/${business.id}`)}
           >
             <img
               src={business.logo}
@@ -59,8 +59,6 @@ const BusinessList = () => {
           </div>
         ))}
       </div>
-
-      {selectedBusiness && <ProductAvailability business={selectedBusiness} />}
     </div>
   );
 };

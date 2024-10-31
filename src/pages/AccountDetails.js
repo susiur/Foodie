@@ -11,7 +11,7 @@ const AccountDetails = () => {
         <form className="flex flex-col">
           <input type="text" placeholder="Usuario" className="mb-4 p-3 rounded-lg border border-gray-300 font-sanchez" />
           <input type="password" placeholder="Contraseña" className="mb-4 p-3 rounded-lg border border-gray-300 font-sanchez" />
-          <input type="text" placeholder="Teléfono atención al cliente" className="mb-4 p-3 rounded-lg border border-gray-300 font-sanchez" />
+          <input type="number" placeholder="Teléfono atención al cliente" className="mb-4 p-3 rounded-lg border border-gray-300 font-sanchez" />
 
           <Link to="/login" className="bg-[#FF6F6F] text-white py-3 rounded-lg text-center font-spartan text-xl">
             Ingresar
