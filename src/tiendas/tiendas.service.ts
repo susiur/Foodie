@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tienda } from './entities/tienda.entity';
 import { CreateTiendaDto } from './dto/create-tienda.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class TiendaService {
@@ -12,9 +13,21 @@ export class TiendaService {
   ) {}
 
   async create(createTiendaDto: CreateTiendaDto): Promise<Tienda> {
-    const tienda = this.tiendaRepository.create(createTiendaDto);
+    // Encriptar las contraseñas antes de guardar
+    const hashedOwnerPassword = await bcrypt.hash(createTiendaDto.ownerPassword, 10);
+    const hashedAccountPassword = await bcrypt.hash(createTiendaDto.accountPassword, 10);
+  
+    // Crear un nuevo objeto tienda y asignar las contraseñas encriptadas
+    const tienda = this.tiendaRepository.create({
+      ...createTiendaDto,
+      ownerPassword: hashedOwnerPassword,
+      accountPassword: hashedAccountPassword,
+      linkWssp: createTiendaDto.linkWssp,
+    });
+  
     return await this.tiendaRepository.save(tienda);
   }
+  
 
   async findAll(): Promise<Tienda[]> {
     return await this.tiendaRepository.find();

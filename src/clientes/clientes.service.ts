@@ -4,6 +4,7 @@ import { UpdateClienteDto } from './dto/update-cliente.dto';
 import { Repository } from 'typeorm';
 import { Cliente } from './entities/cliente.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class ClientesService {
@@ -13,16 +14,29 @@ export class ClientesService {
   ) {}
 
   async create(createClienteDto: CreateClienteDto): Promise<Cliente> {
-    const cliente = this.clienteRepository.create(createClienteDto);
+    const { nombre, apellido, email, telefono, password } = createClienteDto;
+
+    // Encriptar la contraseña
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const cliente = this.clienteRepository.create({
+      nombre,
+      apellido,
+      email,
+      telefono,
+      password: hashedPassword, 
+    });
+
     return this.clienteRepository.save(cliente);
   }
+
   async findAll(): Promise<Cliente[]> {
     return this.clienteRepository.find();
   }
   findOne(id: number): Promise<Cliente> {
     return this.clienteRepository.findOne({
       where: { id },
-      relations: ['organos'],
     });
   }
   async update(id: number, updateClienteDto: UpdateClienteDto): Promise<Cliente> {

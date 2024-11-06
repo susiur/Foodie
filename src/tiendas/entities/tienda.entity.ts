@@ -6,7 +6,25 @@ export class Tienda {
   id: number;
 
   @Column({ type: 'varchar', length: 255 })
-  nombre: string;
+  ownerNombre: string;
+
+  @Column({ type: 'varchar', length: 255 })
+  ownerDocumento: string;
+
+  @Column({ type: 'varchar', length: 255 })
+  ownerPassword: string; // Contraseña del dueño, encriptar antes de guardar
+
+  @Column({ type: 'varchar', length: 255 })
+  establishmentNombre: string;
+
+  @Column({ type: 'varchar', length: 255 })
+  establishmentNit: string;
+
+  @Column({ type: 'varchar', length: 255 })
+  accountUsuario: string;
+
+  @Column({ type: 'varchar', length: 255 })
+  accountPassword: string; // Contraseña de la cuenta, encriptar antes de guardar
 
   @Column({ type: 'varchar', length: 255, unique: true })
   email: string;
@@ -26,6 +44,9 @@ export class Tienda {
   @Column({ type: 'varchar', nullable: true })
   logo: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  linkWssp: string;
+
   @CreateDateColumn()
   fechaActivacion: Date;
 
@@ -37,4 +58,3 @@ export class Tienda {
     return horas < 24;
   }
 }
-

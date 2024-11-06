@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ClientesModule } from './clientes/clientes.module';
 import { TiendasModule } from './tiendas/tiendas.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Tienda } from './tiendas/entities/tienda.entity';
+
 
 @Module({
   imports: [
@@ -12,8 +14,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'root',
-      database: 'foddies',
+      password: 'Eduardo2003@',
+      database: 'Foodie',
+      entities: [Tienda],
       autoLoadEntities: true,
       synchronize: true,
     }),
