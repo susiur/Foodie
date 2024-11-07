@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
+import { Producto } from 'src/productos/entities/producto.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  OneToMany,
+} from 'typeorm';
 
 @Entity('tienda')
 export class Tienda {
@@ -57,4 +64,7 @@ export class Tienda {
     const horas = diff / (1000 * 60 * 60); // Convertir a horas
     return horas < 24;
   }
+
+  @OneToMany(() => Producto, (producto) => producto.store)
+  productos: Producto[];
 }

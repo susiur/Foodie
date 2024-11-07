@@ -16,6 +16,10 @@ export class ClientesService {
   async create(createClienteDto: CreateClienteDto): Promise<Cliente> {
     const { nombre, apellido, email, telefono, password } = createClienteDto;
 
+    if (!password) {
+      throw new Error('Password is required');
+    }
+
     // Encriptar la contraseña
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -25,7 +29,7 @@ export class ClientesService {
       apellido,
       email,
       telefono,
-      password: hashedPassword, 
+      password: hashedPassword,
     });
 
     return this.clienteRepository.save(cliente);
@@ -39,7 +43,10 @@ export class ClientesService {
       where: { id },
     });
   }
-  async update(id: number, updateClienteDto: UpdateClienteDto): Promise<Cliente> {
+  async update(
+    id: number,
+    updateClienteDto: UpdateClienteDto,
+  ): Promise<Cliente> {
     const cliente = await this.clienteRepository.preload({
       id: id,
       ...updateClienteDto,

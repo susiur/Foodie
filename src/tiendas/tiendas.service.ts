@@ -13,21 +13,27 @@ export class TiendaService {
   ) {}
 
   async create(createTiendaDto: CreateTiendaDto): Promise<Tienda> {
-    // Encriptar las contraseñas antes de guardar
-    const hashedOwnerPassword = await bcrypt.hash(createTiendaDto.ownerPassword, 10);
-    const hashedAccountPassword = await bcrypt.hash(createTiendaDto.accountPassword, 10);
-  
+    const { ownerPassword, accountPassword } = createTiendaDto;
+    if (!ownerPassword || !accountPassword) {
+      throw new Error('Owner password and account password are required');
+    }
+
+    const saltRounds = 10;
+    const hashedOwnerPassword = await bcrypt.hash(ownerPassword, saltRounds);
+    const hashedAccountPassword = await bcrypt.hash(
+      accountPassword,
+      saltRounds,
+    );
+
     // Crear un nuevo objeto tienda y asignar las contraseñas encriptadas
     const tienda = this.tiendaRepository.create({
       ...createTiendaDto,
       ownerPassword: hashedOwnerPassword,
       accountPassword: hashedAccountPassword,
-      linkWssp: createTiendaDto.linkWssp,
     });
-  
-    return await this.tiendaRepository.save(tienda);
+
+    return this.tiendaRepository.save(tienda);
   }
-  
 
   async findAll(): Promise<Tienda[]> {
     return await this.tiendaRepository.find();
@@ -41,7 +47,10 @@ export class TiendaService {
     return tienda;
   }
 
-  async update(id: number, updateTiendaDto: Partial<CreateTiendaDto>): Promise<Tienda> {
+  async update(
+    id: number,
+    updateTiendaDto: Partial<CreateTiendaDto>,
+  ): Promise<Tienda> {
     const tienda = await this.findOne(id);
     Object.assign(tienda, updateTiendaDto);
     return await this.tiendaRepository.save(tienda);
@@ -54,7 +63,9 @@ export class TiendaService {
 
   // Método para desactivar tiendas después de 24 horas
   async desactivarTiendasInactivas(): Promise<void> {
-    const tiendas = await this.tiendaRepository.find({ where: { activa: true } });
+    const tiendas = await this.tiendaRepository.find({
+      where: { activa: true },
+    });
     const ahora = new Date();
 
     tiendas.forEach(async (tienda) => {

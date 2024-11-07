@@ -39,5 +39,4 @@ export class CreateTiendaDto {
 
   @IsString()
   linkWssp: string;
-
 }
